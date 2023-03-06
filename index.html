@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Fancy Button</title>
+</head>
+
+<body>
+  <div class="container">
+    <button>
+      <span class="label">Confirm</span>
+      <span class="icon">
+        <svg width="31.146" height="22.172" viewBox="0 0 31.146 22.172">
+          <defs>
+            <style>
+              .a {
+                fill: none;
+                stroke: #fff4f4;
+              }
+            </style>
+          </defs>
+          <path class="a" d="M612.723,402.447l8.033,9.613,22.386-21.08" transform="translate(-612.339 -390.615)" />
+        </svg>
+
+      </span>
+    </button>
+    <p>Next</p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"
+    integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/CSSRulePlugin.min.js"
+    integrity="sha512-9F1xsW3TBG87UnyGcF1SrXph249h/eUKPRKJZVhXxW+OeDmCiBvU9/gLfOo5qEvGTjTxOr6YQrY4ImjL90IUyw=="
+    crossorigin="anonymous"></script>
+  <script>
+    gsap.registerPlugin(CSSRulePlugin);
+
+    const tl = gsap.timeline({ defaults: { ease: Power2.easeOut } });
+    const btn = document.querySelector('button');
+    const rule = CSSRulePlugin.getRule('button::before');
+
+    tl.to('.label', { opacity: 0, height: 0, position: 'absolute', duration: .2 })
+      .to('button', { borderRadius: '50%', width: '2.5em', height: '2.5em', ease: Elastic.easeOut.config(.7, 0.3), duration: .8 }, '-=.5s')
+      .to(rule, { borderRadius: '50%' }, '-=.5s')
+      .to('svg', { strokeDasharray: '90 78' }, '-=1')
+      .to('path', { attr: { d: 'M624.095,412.708l9.6-10.978-9.6-10.694' } }, '+=.5')
+      .to('p', { clipPath: 'circle(100% at 50% 50%)' }, '-=.2');
+
+    tl.pause();
+
+    btn.addEventListener('click', () => {
+      tl.play();
+    })
+  </script>
+</body>
+
+</html>

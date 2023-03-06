@@ -1,0 +1,49 @@
+body {
+  background: #5d00d6;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-family: "Poppins";
+  height: 100vh;
+}
+
+button {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  position: relative; //car si on veut mettre le before en absolute (pour bien  le positionner),  on est obligé de mettre son conteneur (ou son parent suivant le cas) en relative. = le before est positionné "relativement" a son conteneur, pas  à toute la page.
+  padding: 0.5em 1em;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.2em;
+  outline: none;
+  width: 10em;
+
+  &:before {
+    position: absolute;
+    content: "";
+    background: #5000b8;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.2em;
+    left: 0.5em; //à 0.5em du conteneur
+    top: 0.5em; //à 0.5em du conteneur
+    z-index: -1;
+  }
+}
+
+p {
+  text-align: center;
+  font-weight: bold;
+  clip-path: circle(0% at 50% 50%);
+}
+
+svg {
+  position: absolute;
+  top: 0.8em;
+  left: 0.7em;
+  stroke-dasharray: 0 78;
+}
